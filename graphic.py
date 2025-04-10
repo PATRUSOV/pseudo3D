@@ -6,12 +6,11 @@ class _MainWindow(turtle.Turtle):
     This class interacts with the library that draws the window.
     """
 
-    _object = None  
-
+    _object = None
 
     def __init__(self):
         self.screen = turtle.Screen()
-        #ПЕРЕПИСАТЬ  
+        # ПЕРЕПИСАТЬ
         super().__init__(visible=False)
         self.speed(0)
 
@@ -30,7 +29,7 @@ class _MainWindow(turtle.Turtle):
     def listen(self) -> None:
         self.screen.listen()
 
-    def key_bind(self, func, key:str):
+    def key_bind(self, func, key: str):
         self.screen.onkey(func, key)
 
     def Done(self) -> None:
@@ -39,27 +38,26 @@ class _MainWindow(turtle.Turtle):
         """
         turtle.done()
 
-    #КОСТЫЛЬ  
-    def circle(self, X:float, Y:float, radius:float) -> None:
+    # КОСТЫЛЬ
+    def circle(self, X: float, Y: float, radius: float) -> None:
         super().penup()
         super().goto(X, Y - radius)
         super().pendown()
         super().circle(radius)
 
-    #КОСТЫЛЬ
+    # КОСТЫЛЬ
     def line(self, X1: float, Y1: float, X2: float, Y2: float) -> None:
         self.penup()
         self.goto(X1, Y1)
         self.pendown()
         self.goto(X2, Y2)
-    
-    #КОСТЫЛЬ
+
+    # КОСТЫЛЬ
     def clear(self):
-        super().clear() 
+        super().clear()
+
 
 def MainWindow() -> _MainWindow:
     if _MainWindow._object is None:
-        _MainWindow._object = _MainWindow() 
+        _MainWindow._object = _MainWindow()
     return _MainWindow._object
-
-    

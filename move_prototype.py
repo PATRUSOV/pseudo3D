@@ -9,16 +9,19 @@ cam.set_speed(20)
 
 def move():
     cam.move()
-    print (f"{cam._X} {cam._Y}")
+    print(f"{cam._X} {cam._Y}")
     cam.draw()
+
 
 def turn_left():
     cam.turn(10)
-    print (f"{cam._gaze_direction}")
-    
+    print(f"{cam._gaze_direction}")
+
+
 def turn_right():
     cam.turn(-10)
-    print (f"{cam._gaze_direction}")
+    print(f"{cam._gaze_direction}")
+
 
 window.listen()
 

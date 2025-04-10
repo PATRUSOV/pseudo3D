@@ -1,5 +1,6 @@
 from exceptions import *
 
+
 class _world:
     """
     Main game class.
@@ -10,9 +11,9 @@ class _world:
     def __init__(self):
         self._length = 800
         self._width = 600
-        MAP = {
-            (4, 10): [(100, 5), (25, 10)], 
-            (100, 5) : [(4, 10)]
+        self.MAP = {
+            (4, 10): [(100, 5), (25, 10)],
+            (100, 5): [(4, 10)]
         }
 
     def get_size(self) -> tuple[int, int]:
@@ -21,7 +22,7 @@ class _world:
         """
         return (self._X, self._Y)
 
-    def set_size(self, length:int, wight:int) -> None:
+    def set_size(self, length: int, wight: int) -> None:
         """
         Set the width and length of the world.
 
@@ -35,6 +36,7 @@ class _world:
 
     def lead_objects(self) -> None:
         pass
+
 
 def World() -> _world:
     """
