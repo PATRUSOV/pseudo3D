@@ -17,7 +17,7 @@ def get_point(begin: Point, angle: float, dist: float) -> Point:
         angle -- the angle between vertical and vector of displacement.
         dist -- displacement module (distance from beginning point to the target point).
 
-    Returns X and Y of target point.
+    Returns target point.
     """
 
     angle = deg2rad(angle)

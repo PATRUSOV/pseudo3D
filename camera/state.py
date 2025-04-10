@@ -1,18 +1,20 @@
-class _camera_state:
+class CameraState:
 
-    def __init__(self):
-        self._X: float = 0
-        self._Y: float = 0
-        self._gaze_direction = 0
+    from .__init__ import Camera
+    def __init__(self, camera: Camera):
+
+        from core_math.primitives import Point
+        self.position: Point = Point(0, 0)
+        self.gaze_direction: float = 0
         """
         The angle between the vertical perpendicular, and the view vector.
         In the range [-180; 180].
         """
-        self._speed: float = 0
-        self._dist_to_normal_line: float = 0
+        self.speed: float = 0
+        self.dist_to_normal_line: float = 0
         """
         Дистанция от камеры до линии нормали. 
         В диапазоне [0; inf)
         """
-        self._fov = 0
-        self._radius_of_view = 0
+        self.fov = 0
+        self.radius_of_view = 0
