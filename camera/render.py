@@ -1,4 +1,4 @@
-from core_math.utils import (get_point, get_intersection_point)
+from core_math.utils import (get_point, get_lines_intersection)
 from core_math.primitives import (Point, Line)
 from numpy import (sin, cos)
 

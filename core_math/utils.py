@@ -3,7 +3,13 @@ from primitives import (Point, Line)
 
 
 def angle_upcast(angle: float) -> float:
-    """Scale the angle to values within [-180, 180]."""
+    """
+    Приводит угол к диапазону [-180, 180].
+
+    Аргументы:
+        angle: Угол любой величины
+
+    """
 
     return (angle + 180) % 360 - 180
 
@@ -25,7 +31,6 @@ def get_point(begin: Point, angle: float, dist: float) -> Point:
 
 
 def get_lines_intersection(line1: Line, line2: Line) -> Point | None:
-    # ПИСАЛА НЕЙРОНКА
     """
     Находит точку пересечения двух бесконечных прямых.
 
@@ -36,7 +41,6 @@ def get_lines_intersection(line1: Line, line2: Line) -> Point | None:
     Возвращает:
         Точку пересечения или None, если прямые параллельны или совпадают
     """
-    # Вычисляем коэффициенты уравнений прямых
     A1 = line1.end.y - line1.begin.y
     B1 = line1.begin.x - line1.end.x
     C1 = A1 * line1.begin.x + B1 * line1.begin.y
@@ -45,14 +49,33 @@ def get_lines_intersection(line1: Line, line2: Line) -> Point | None:
     B2 = line2.begin.x - line2.end.x
     C2 = A2 * line2.begin.x + B2 * line2.begin.y
 
-    # Вычисляем определитель
     denominator = A1 * B2 - A2 * B1
 
     if isclose(denominator, 0.0, atol=1e-9):
         return None
 
-    # Вычисляем координаты точки пересечения
-    x = (B2 * C1 - B1 * C2) / denominator
-    y = (A1 * C2 - A2 * C1) / denominator
+    return Point(
+        (B2 * C1 - B1 * C2) / denominator,
+        (A1 * C2 - A2 * C1) / denominator
+    )
 
-    return Point(x, y)
+
+def is_point_on_line(point: Point, line: Line) -> bool:
+    """
+    Проверяет, лежит ли точка на прямой, заданной двумя точками.
+
+    Параметры:
+        point: Проверяемая точка (Point)
+        line: Прямая (Line), заданная двумя точками
+
+    Возвращает:
+        bool: True если точка на прямой (с погрешностью 1e-9)
+    """
+    x1, y1 = line.begin.x, line.begin.y
+    x2, y2 = line.end.x, line.end.y
+
+    cross = (y2 - y1) * (point.x - x1) - (x2 - x1) * (point.y - y1)
+
+    return isclose(cross, 0.0, atol=1e-9)
+
+

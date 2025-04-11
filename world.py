@@ -1,4 +1,5 @@
 from exceptions import *
+from core_math.primitives import Point
 
 
 class _world:
@@ -9,18 +10,18 @@ class _world:
     _object = None
 
     def __init__(self):
-        self._length = 800
-        self._width = 600
-        self.MAP = {
-            (4, 10): [(100, 5), (25, 10)],
-            (100, 5): [(4, 10)]
+        self._length: float = 800
+        self._width: float = 600
+        self.MAP: dict[Point, list[Point]] = {
+            Point(1, 10): [Point(100, 5), Point(25, 10)],
+            Point(100, 5): [Point(4, 10)]
         }
 
-    def get_size(self) -> tuple[int, int]:
+    def get_size(self) -> tuple[float, float]:
         """
         Get the width and length of the world.
         """
-        return (self._X, self._Y)
+        return self._length, self._width
 
     def set_size(self, length: int, wight: int) -> None:
         """
