@@ -5,9 +5,7 @@ from world import World
 
 
 class Camera:
-    """
-        The camera is the entity onto which the steel objects are projected
-    """
+    """The camera is the entity onto which the steel objects are projected"""
 
     def __init__(self) -> None:
 
@@ -17,24 +15,30 @@ class Camera:
         from .render import CameraRender
         self.render = CameraRender(self)
 
-    def set_speed(self, speed: int) -> None:
+    def set_speed(self, speed: float) -> None:
         """
-        Sets the number of units traversed per step.
+        Устанавливает количество единиц пути проходимых за шаг.
+
+        Аргументы:
+            speed -- В диапазоне [0; inf)
         """
         if speed < 0:
             raise IncorrectValue("The speed value cannot be less than zero.")
         self.state.speed = speed
 
-    def set_dist_to_normal_line(self, dist: int):
+    def set_dist_to_normal_line(self, dist: float):
         """
-        Sets the distance from the camera to the normal line. 
+        Устанавливает расстояние от камеры до линии нормали.
+
+        Аргументы:
+            dist -- В диапазоне [0; inf)
         """
         if dist < 0:
             raise IncorrectValue(
                 "The engine does not work with a negative distance from the camera to the line of normal.")
         self.state.dist_to_normal_line = dist
 
-    def set_gaze_direction(self, angle: int) -> None:
+    def set_gaze_direction(self, angle: float) -> None:
         """
         Sets the direction of gaze.
 
@@ -56,7 +60,7 @@ class Camera:
         self.state.fov = angle
         self.state.radius_of_view = radius
 
-    def goto(self, X: int, Y: int) -> None:
+    def goto(self, X: float, Y: float) -> None:
         """
         Moves the camera to a point
         """

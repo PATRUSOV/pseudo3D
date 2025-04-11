@@ -1,4 +1,4 @@
-from numpy import (sin, cos, deg2rad)
+from numpy import (sin, cos, deg2rad, isclose)
 from primitives import (Point, Line)
 
 
@@ -24,20 +24,35 @@ def get_point(begin: Point, angle: float, dist: float) -> Point:
     return Point(begin.x + dist * sin(angle), begin.y + dist * cos(angle))
 
 
-def get_intersection_point(
-        line1: Line,
-        line2: Line
-) -> Point | None:
+def get_lines_intersection(line1: Line, line2: Line) -> Point | None:
+    # ПИСАЛА НЕЙРОНКА
     """
-    Arguments:
-        x1, y1 -- first point coordinates
-        x2, y2 -- second point coordinates
+    Находит точку пересечения двух бесконечных прямых.
 
-    Returns the coordinates of the intersection of two lines.
+    Аргументы:
+        line1: Первая прямая (определяется двумя точками)
+        line2: Вторая прямая (определяется двумя точками)
+
+    Возвращает:
+        Точку пересечения или None, если прямые параллельны или совпадают
     """
+    # Вычисляем коэффициенты уравнений прямых
+    A1 = line1.end.y - line1.begin.y
+    B1 = line1.begin.x - line1.end.x
+    C1 = A1 * line1.begin.x + B1 * line1.begin.y
 
-    pass
+    A2 = line2.end.y - line2.begin.y
+    B2 = line2.begin.x - line2.end.x
+    C2 = A2 * line2.begin.x + B2 * line2.begin.y
 
+    # Вычисляем определитель
+    denominator = A1 * B2 - A2 * B1
 
+    if isclose(denominator, 0.0, atol=1e-9):
+        return None
 
+    # Вычисляем координаты точки пересечения
+    x = (B2 * C1 - B1 * C2) / denominator
+    y = (A1 * C2 - A2 * C1) / denominator
 
+    return Point(x, y)

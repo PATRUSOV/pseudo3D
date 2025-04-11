@@ -3,7 +3,7 @@ from graphic import *
 
 window = MainWindow()
 
-cam = Camera(0, 0)
+cam = Camera()
 cam.set_speed(20)
 
 
