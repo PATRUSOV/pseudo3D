@@ -1,11 +1,8 @@
-from exceptions import *
 from core_math.primitives import Point
 
 
 class _world:
-    """
-    Main game class.
-    """
+    """Класс игрового мира (синглтон)."""
 
     _object = None
 
@@ -19,30 +16,26 @@ class _world:
 
     def get_size(self) -> tuple[float, float]:
         """
-        Get the width and length of the world.
+        Возвращает:
+            Длину и ширину.
         """
         return self._length, self._width
 
     def set_size(self, length: int, wight: int) -> None:
         """
-        Set the width and length of the world.
+        Устанавливает длину и ширину мира.
 
         Arguments:
-            length, wight -- must be => 0
+            length: Длинна
+            wight: Ширина
         """
-        if length <= 0 or wight <= 0:
-            raise IncorrectValue("Negative coordinates cannot be entered")
+        # if length <= 0 or wight <= 0:
+        #     raise IncorrectValue("Negative coordinates cannot be entered")
         self._length = length
         self._width = wight
 
-    def lead_objects(self) -> None:
-        pass
-
 
 def World() -> _world:
-    """
-    Singleton to interact with the _world.
-    """
     if _world._object == None:
         _world._object = _world()
     return _world._object

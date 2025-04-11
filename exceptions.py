@@ -1,6 +1,6 @@
 class IncorrectValue(Exception):
     """
-    Throws out at incorrect values.
+    Выбрасывается при некорректных значениях.
     """
     pass
 

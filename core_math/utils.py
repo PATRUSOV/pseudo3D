@@ -7,8 +7,7 @@ def angle_upcast(angle: float) -> float:
     Приводит угол к диапазону [-180, 180].
 
     Аргументы:
-        angle: Угол любой величины
-
+        angle: Угол, в диапазоне [-inf; inf]
     """
 
     return (angle + 180) % 360 - 180
@@ -16,14 +15,15 @@ def angle_upcast(angle: float) -> float:
 
 def get_point(begin: Point, angle: float, dist: float) -> Point:
     """
-    Adds dX to the initial X and dY to Y. dX and dY are calculated by finding their projections on the vertical.
+    Добавляет dX и dY к исходным X и Y. dX и dY рассчитываются из треугольника.
 
     Arguments:
-        begin -- first.
-        angle -- the angle between vertical and vector of displacement.
-        dist -- displacement module (distance from beginning point to the target point).
+        begin: Исходная точка
+        angle: Угол между вертикалью и вектором перемещения
+        dist: Модуль перемещения (расстояние от исходной до искомой точки)
 
-    Returns target point.
+    Возвращает:
+        Точка после смещения.
     """
 
     angle = deg2rad(angle)
@@ -65,11 +65,11 @@ def is_point_on_line(point: Point, line: Line) -> bool:
     Проверяет, лежит ли точка на прямой, заданной двумя точками.
 
     Параметры:
-        point: Проверяемая точка (Point)
-        line: Прямая (Line), заданная двумя точками
+        point: Проверяемая точка
+        line: Прямая, заданная двумя точками
 
     Возвращает:
-        bool: True если точка на прямой (с погрешностью 1e-9)
+        True если точка на прямой (с погрешностью 1e-9), иначе False.
     """
     x1, y1 = line.begin.x, line.begin.y
     x2, y2 = line.end.x, line.end.y
@@ -77,5 +77,3 @@ def is_point_on_line(point: Point, line: Line) -> bool:
     cross = (y2 - y1) * (point.x - x1) - (x2 - x1) * (point.y - y1)
 
     return isclose(cross, 0.0, atol=1e-9)
-
-

@@ -3,7 +3,7 @@ import turtle
 
 class _MainWindow(turtle.Turtle):
     """
-    This class interacts with the library that draws the window.
+    Класс для взаимодействия с библиотекой отрисовки.
     """
 
     _object = None

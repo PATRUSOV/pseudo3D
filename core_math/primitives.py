@@ -2,14 +2,14 @@ from typing import NamedTuple
 
 
 class Point(NamedTuple):
-    """2D point."""
+    """Двумерная точка"""
 
     x: int | float
     y: int | float
 
 
 class Line:
-    """2D line."""
+    """Линия на плоскости."""
 
     def __init__(self, begin: Point, end: Point):
         self.begin = begin
